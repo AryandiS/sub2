@@ -1,0 +1,29 @@
+/* eslint-disable no-underscore-dangle */
+import DrawerInitiator from "../utils/drawer-initiator";
+
+class App {
+  constructor({ button, drawer, content }) {
+    this._button = button;
+    this._drawer = drawer;
+    this._content = content;
+
+    this._initialAppShell();
+  }
+
+  _initialAppShell() {
+    DrawerInitiator.init({
+      button: this._button,
+      drawer: this._drawer,
+    });
+  }
+
+  async renderPage() {
+    const skipLink = document.querySelector(".skip_link");
+    skipLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      document.querySelector("#content").focus();
+    });
+  }
+}
+
+export default App;
